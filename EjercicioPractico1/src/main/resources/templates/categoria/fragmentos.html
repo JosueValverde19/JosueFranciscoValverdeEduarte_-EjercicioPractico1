@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Tabla de Registros</title>
+</head>
+<body>
+    <nav th:replace="templates.html"></nav>
+    <h1>Registros de la Base de Datos</h1>
+
+    <!-- Botón para Agregar Registro -->
+    <button id="agregarBtn">Agregar Registro</button>
+
+    <!-- Tabla para mostrar los registros -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Identificación</th>
+                <th>Nivel Cursando</th>
+                <th>Edad</th>
+                <th>Altura</th>
+                <th>Peso</th>
+                <th>Género</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se insertarán los registros dinámicamente -->
+        </tbody>
+    </table>
+
+    <!-- Formulario para Agregar Registro (oculto por defecto) -->
+    <div id="formularioAgregar" style="display: none;">
+        <h2>Agregar Registro</h2>
+        <form id="agregarForm">
+            <input type="text" placeholder="Nombre" name="nombre">
+            <input type="text" placeholder="Identificación" name="identificacion">
+            <input type="text" placeholder="Nivel Cursando" name="nivelCursando">
+            <input type="number" placeholder="Edad" name="edad">
+            <input type="number" placeholder="Altura" name="altura">
+            <input type="number" placeholder="Peso" name="peso">
+            <input type="text" placeholder="Género" name="genero">
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+
+    <!-- Script para manejar interacción con la tabla y el formulario -->
+    <script>
+        const tabla = document.querySelector('table');
+        const tbody = tabla.querySelector('tbody');
+        const agregarBtn = document.getElementById('agregarBtn');
+        const formularioAgregar = document.getElementById('formularioAgregar');
+        const agregarForm = document.getElementById('agregarForm');
+
+        agregarBtn.addEventListener('click', () => {
+            formularioAgregar.style.display = 'block';
+        });
+
+        agregarForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            // Aquí debes agregar código para enviar los datos al servidor y actualizar la tabla
+            // Puedes usar JavaScript y AJAX para realizar esta acción.
+            // Luego, actualiza la tabla con los nuevos datos.
+        });
+
+        // Debes cargar los datos de la base de datos y agregarlos a la tabla aquí.
+        // Puedes hacerlo usando JavaScript y una llamada a una API o desde el lado del servidor.
+        // Recuerda que esta parte depende de cómo obtienes los datos.
+
+        // Ejemplo de cómo agregar una fila a la tabla:
+        function agregarFila(id, nombre, identificacion, nivelCursando, edad, altura, peso, genero) {
+            const fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td>${id}</td>
+                <td>${nombre}</td>
+                <td>${identificacion}</td>
+                <td>${nivelCursando}</td>
+                <td>${edad}</td>
+                <td>${altura}</td>
+                <td>${peso}</td>
+                <td>${genero}</td>
+                <td>
+                    <button onclick="editarRegistro(${id})">Editar</button>
+                    <button onclick="borrarRegistro(${id})">Borrar</button>
+                </td>
+            `;
+            tbody.appendChild(fila);
+        }
+
+        // Ejemplo de funciones para editar y borrar registros (debes implementarlas).
+        function editarRegistro(id) {
+            // Implementar la edición del registro aquí.
+        }
+
+        function borrarRegistro(id) {
+            // Implementar la eliminación del registro aquí.
+        }
+
+        // Carga de datos de muestra (debes reemplazar con tus datos reales)
+        agregarFila(1, 'Ejemplo 1', 'ID-001', 'Nivel 1', 25, 175, 70, 'Masculino');
+        agregarFila(2, 'Ejemplo 2', 'ID-002', 'Nivel 2', 30, 160, 65, 'Femenino');
+    </script>
+</body>
+</html>
